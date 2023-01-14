@@ -4,7 +4,7 @@
   "description": "Meglio - Bulma + Alpine JS ICO/Crypto Landing Website",
   "main": "gulpfile.js",
   "dependencies": {
-    "@ryangjchandler/spruce": "^2.4.0",
+    "@ryangjchandler/spruce": "^2.7.1",
     "alpinejs": "^2.8.0",
     "aos": "^3.0.0-beta.6",
     "bulma": "^0.9.1",
