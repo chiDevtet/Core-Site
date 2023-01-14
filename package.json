@@ -23,7 +23,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^10.4.13",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.13",
     "browserify": "^17.0.0",
