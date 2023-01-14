@@ -1,12 +1,3 @@
-# 👋 Meglio
-> Meglio is an ICO / Crypto landing page built by [Dex](https://github.com/DesmondSanctity).
-
-![Screenshot](https://drive.google.com/file/d/1fSh_KOnhm6Pe-7EB5mU3WYSpGDIreq75/view?usp=sharing "Meglio")
-
-## ✌️ Preview
-
-Check out the live demo by clicking [here](https://desmondsanctity.github.io/meglio-landing-page/). 
-Meglio is built with [Bulma](https://bulma.io) and [Alpine JS](https://github.com/alpinejs/alpine).
 
 ## 👍 Features
 
