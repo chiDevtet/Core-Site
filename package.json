@@ -45,7 +45,7 @@
     "node-bourbon": "^4.2.8",
     "npm-force-resolutions": "0.0.3",
     "panini": "^1.7.1",
-    "sass": "^1.30.0",
+    "sass": "^1.57.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "resolutions": {
