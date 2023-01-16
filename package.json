@@ -22,7 +22,7 @@
     "@babel/core": "^7.12.3",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.20.2",
-    "@babel/register": "^7.12.1",
+    "@babel/register": "^7.18.9",
     "autoprefixer": "^10.4.13",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.13",
