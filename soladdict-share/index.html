@@ -1,0 +1,429 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOLADDICT — THE FIX</title></head><body bgcolor="#06100f" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0"><canvas id="app" aria-label="Interactive SOLADDICT demo"></canvas><script>
+(()=>{
+const c=document.getElementById('app'),g=c.getContext('2d');
+const A={bg:'#06100f',box:'#10201e',lime:'#a0ff68',mint:'#65f8c7',pink:'#ff629c',purple:'#bb95ff',white:'#f0f9f5',soft:'#8eb3a3',gold:'#ffc66e'};
+const profile=new Image();profile.src='data:image/webp;base64,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';
+let W=390,H=1240,phone=true,T=0,last=performance.now(),controls=[];
+const s={view:'intro',start:performance.now(),armed:false,soundOn:true,audioMessage:'',tab:0,meter:87.2,clean:7,fix:142,amount:18.42,total:1842.72,streak:3,burn:82,popup:'',breakStart:0,flash:0,history:[18.42,16.11,12.98,21.06,14.57]};
+const cap=(v,a,b)=>Math.max(a,Math.min(b,v));
+function resize(){W=Math.max(310,Math.floor(document.documentElement.clientWidth||390));phone=W<760;H=phone?1240:(W<1060?1225:Math.max(975,Math.floor(window.innerHeight||900)));c.width=W;c.height=H}addEventListener('resize',resize);resize();
+function box(x,y,w,h,r=0,col,edge){g.beginPath();g.roundRect(x,y,w,h,r);if(col){g.fillStyle=col;g.fill()}if(edge){g.strokeStyle=edge;g.lineWidth=1;g.stroke()}}
+function tx(v,x,y,z=13,col=A.white,weight=800,align='left',mw){g.font=`${weight} ${z}px Arial,Helvetica,sans-serif`;g.textAlign=align;g.fillStyle=col;g.fillText(String(v),x,y,mw)}
+function circ(x,y,r,col,edge,lw=1){g.beginPath();g.arc(x,y,r,0,Math.PI*2);if(col){g.fillStyle=col;g.fill()}if(edge){g.strokeStyle=edge;g.lineWidth=lw;g.stroke()}}
+function ln(x,y,u,v,col='#507769',th=1){g.beginPath();g.moveTo(x,y);g.lineTo(u,v);g.strokeStyle=col;g.lineWidth=th;g.stroke()}
+function glow(x,y,r,col,a=.25){let gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,col);gr.addColorStop(1,'transparent');g.globalAlpha=a;g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);g.globalAlpha=1}
+function btn(label,x,y,w,h,act,primary=false,size=12){box(x,y,w,h,10,primary?A.lime:'#1b3531',primary?null:'#385a50');tx(label,x+w/2,y+h/2+size*.36,size,primary?'#07120c':A.white,900,'center',w-6);controls.push({x,y,w,h,act})}
+function bar(x,y,w,h,val,color=A.lime){box(x,y,w,h,h/2,'#23372f');g.save();g.shadowColor=color;g.shadowBlur=14;box(x,y,w*cap(val,0,100)/100,h,h/2,color);g.restore()}
+function card(x,y,w,h,col=A.lime){box(x,y,w,h,15,A.box,'#294740');box(x,y+18,3,h-36,2,col)}
+function nums(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function clock(v){return `00:${String(Math.floor(v/60)).padStart(2,'0')}:${String(Math.floor(v%60)).padStart(2,'0')}`}
+function room(x,y,w,h){g.save();g.beginPath();g.roundRect(x,y,w,h,14);g.clip();
+let L=x+w*.09,R=x+w*.91,U=y+h*.1,D=y+h*.83;
+let bg=g.createLinearGradient(0,y,0,y+h);bg.addColorStop(0,'#f7fbfb');bg.addColorStop(1,'#c8d9d9');box(x,y,w,h,0,bg);
+function poly(pts,col){g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fillStyle=col;g.fill()}
+poly([[x,y],[L,U],[L,D],[x,y+h]],'#c6d6d9');poly([[x+w,y],[R,U],[R,D],[x+w,y+h]],'#b1c3c7');poly([[x,y+h],[L,D],[R,D],[x+w,y+h]],'#dae4e4');
+function tiles(xx,yy,ww,hh,cols,rows){let cw=ww/cols,ch=hh/rows;for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){let a=xx+cw*i+1,b=yy+ch*j+1,rw=cw-2,rh=ch-2;let q=g.createRadialGradient(a+rw*.4,b+rh*.3,0,a+rw/2,b+rh/2,Math.max(rw,rh)*.85);q.addColorStop(0,'#ffffff');q.addColorStop(.7,'#e3eeee');q.addColorStop(1,'#afc4c6');box(a,b,rw,rh,7,q,'#a2b7bc');ln(a+5,b+5,a+rw-5,b+5,'#fff',1);circ(a+rw/2,b+rh/2,2.5,'#9aafb2');circ(a+rw/2,b+rh/2,.9,'#6e9190')}}
+tiles(L,U,R-L,D-U,4,5);tiles(x+3,y+14,L-x-5,h-28,1,6);tiles(R+2,y+14,x+w-R-5,h-28,1,6);
+poly([[x,y],[x+w,y],[R,U],[L,U]],'#e7eff0');box(x+w*.33,y+8,w*.34,15,4,'#a5bfc2');box(x+w*.35,y+10,w*.30,9,3,'#fff');
+let dx=R-w*.23,dy=U+16,dw=w*.2,dh=D-U-23;box(dx-4,dy-4,dw+8,dh+8,5,'#849c9e');box(dx,dy,dw,dh,4,'#e5eeee','#749398');box(dx+7,dy+dh*.22,dw-14,dh*.16,3,'#172e37');for(let j=1;j<3;j++)ln(dx+7+j*(dw-14)/3,dy+dh*.22,dx+7+j*(dw-14)/3,dy+dh*.38,'#93aeb6',2);box(dx+dw-11,dy+dh*.62,4,15,2,'#6a9296');
+for(let j=0;j<=4;j++)ln(x+j*w/4,y+h,L+j*(R-L)/4,D,'#9db3b6');
+box(x+10,y+10,Math.min(w-20,177),28,6,'#1c353a');circ(x+22,y+24,4,Math.sin(T*7)>0?A.mint:A.pink);tx('PADDED OBSERVATION / 001',x+34,y+28,9,A.white,850);
+box(x+10,y+h-25,151,18,5,'#24454d');tx('SOLANA WITHDRAWAL WARD',x+17,y+h-12,7.5,'#e2faf1');g.restore();box(x,y,w,h,14,null,'#91acb0')}
+function degen(x,y,scale,time,dir=0,free=0){g.save();g.translate(x,y);g.rotate(dir*.1+Math.sin(time*13)*.04);g.scale(scale,scale);free=cap(free,0,1);
+for(let j of [-1,1]){box(j*19-15,34,28,62,8,'#e4ece9','#90a6a0');box(j*23-20,87,39,14,7,A.purple,'#504c68')}
+if(free>.3){box(-45,-29,90,100,17,'#143a30','#79e884');box(-28,-5,56,52,8,'#206d4b');tx('SOL',0,28,23,A.lime,900,'center');g.lineCap='round';g.lineWidth=22;g.strokeStyle='#f5f9f7';g.beginPath();g.moveTo(-39,-7);g.lineTo(-75,-60*free);g.moveTo(39,-7);g.lineTo(75,-60*free);g.stroke();circ(-75,-60*free,15,'#ffdab0','#48534e',2);circ(75,-60*free,15,'#ffdab0','#48534e',2)}else{box(-50,-27,100,96,21,'#f5f8f4','#829a93');g.lineCap='round';g.lineWidth=23;g.strokeStyle='#fff';g.beginPath();g.moveTo(-41,-5);g.quadraticCurveTo(-9,41,43,13);g.moveTo(41,-8);g.quadraticCurveTo(12,39,-42,20);g.stroke();g.lineWidth=2;g.strokeStyle='#78958d';g.stroke();for(let i=0;i<4;i++)box(-34+i*16,46,10,6,2,'#90afa4')}
+g.beginPath();[[-48,-77],[-47,-111],[-27,-98],[-12,-135],[6,-110],[26,-129],[40,-101],[51,-115],[48,-69]].forEach(([a,b],i)=>i?g.lineTo(a,b):g.moveTo(a,b));g.closePath();g.fillStyle='#7bf26a';g.fill();g.strokeStyle='#194c36';g.lineWidth=3;g.stroke();circ(0,-58,51,'#ffdfb8','#263940',2);circ(-50,-57,9,'#ffdfb8');circ(50,-57,9,'#ffdfb8');
+for(let q of [-22,22]){circ(q,-68,21,'#7759a9','#37324b',2);circ(q,-68,16,'#fff');circ(q+Math.sin(time*4)*4,-64,8,A.mint);circ(q+2,-64,5,'#162631');circ(q+4,-68,2,'#fff')}
+g.beginPath();g.moveTo(-25,-35);g.quadraticCurveTo(0,-16,26,-35);g.quadraticCurveTo(2,-4,-10,-20);g.fillStyle='#31263e';g.fill();box(-10,-28,30,8,2,'#fff');box(-34,47,68,17,4,'#263d35');tx(free>.3?'FREE AT LAST':'SOL ADDICT',0,59,8,A.lime,900,'center');g.restore()}
+// ORIGINAL 10-SECOND CARTOON / NEW-WAVE SCORE — entirely synthesized by Web Audio.
+// iOS browsers need a real tap before AudioContext can produce sound.
+const music={ctx:null,master:null,noise:null,bus:null,mute:null,ends:0,available:true};
+function audioReady(){
+  if(music.ctx)return music.ctx;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){music.available=false;s.audioMessage='AUDIO NOT SUPPORTED';return null;}
+  try{
+    const ctx=new AC();music.ctx=ctx;
+    const compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-18;compressor.knee.value=16;compressor.ratio.value=7;compressor.attack.value=.004;compressor.release.value=.2;
+    music.master=ctx.createGain();music.master.gain.value=.42;
+    music.master.connect(compressor);compressor.connect(ctx.destination);
+    const b=ctx.createBuffer(1,Math.floor(ctx.sampleRate*.3),ctx.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    music.noise=b;
+    return ctx;
+  }catch(e){music.available=false;s.audioMessage='SOUND NOT AVAILABLE';return null;}
+}
+function pitch(m){return 440*Math.pow(2,(m-69)/12)}
+function note(freq,t,dur,wave,vol,slide){
+  const ctx=music.ctx,osc=ctx.createOscillator(),amp=ctx.createGain();
+  osc.type=wave;osc.frequency.setValueAtTime(freq,t);
+  if(slide)osc.frequency.exponentialRampToValueAtTime(Math.max(25,slide),t+dur);
+  const peak=Math.min(t+dur*.2,t+.022),end=t+dur+.065;
+  amp.gain.setValueAtTime(.0001,t);amp.gain.exponentialRampToValueAtTime(vol,peak);
+  amp.gain.setValueAtTime(vol*.73,Math.max(peak+.001,t+dur*.63));amp.gain.exponentialRampToValueAtTime(.0001,end);
+  osc.connect(amp);amp.connect(music.bus);osc.start(t);osc.stop(end+.02);
+}
+function thump(t){
+  const ctx=music.ctx,osc=ctx.createOscillator(),amp=ctx.createGain();
+  osc.type='sine';osc.frequency.setValueAtTime(150,t);osc.frequency.exponentialRampToValueAtTime(48,t+.13);
+  amp.gain.setValueAtTime(.2,t);amp.gain.exponentialRampToValueAtTime(.0001,t+.22);
+  osc.connect(amp);amp.connect(music.bus);osc.start(t);osc.stop(t+.24);
+}
+function hiss(t,dur=.08,vol=.085,high=3200){
+  const ctx=music.ctx,src=ctx.createBufferSource(),hp=ctx.createBiquadFilter(),amp=ctx.createGain();
+  src.buffer=music.noise;hp.type='highpass';hp.frequency.value=high;
+  amp.gain.setValueAtTime(vol,t);amp.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  src.connect(hp);hp.connect(amp);amp.connect(music.bus);src.start(t);src.stop(t+dur+.01);
+}
+function snare(t){hiss(t,.15,.11,850);note(185,t,.085,'triangle',.036,125)}
+function brass(t,m,d=.115,vol=.035){
+  note(pitch(m),t,d,'sawtooth',vol);note(pitch(m)*1.007,t,d,'square',vol*.33);
+}
+function bloop(t,up=false){
+  // Bouncy wall-impact sound: pitch-warped spring and a little wooden click.
+  note(up?175:570,t,.22,'sine',.14,up?850:145);
+  note(up?340:820,t+.017,.12,'triangle',.05,up?480:370);
+  hiss(t,.025,.035,2100);
+}
+function stopScore(){
+  if(music.ctx&&music.bus){
+    const time=music.ctx.currentTime;
+    music.bus.gain.cancelScheduledValues(time);
+    music.bus.gain.setTargetAtTime(.0001,time,.032);
+    music.bus=null;music.mute=null;
+  }
+}
+function scoreVolume(){
+  if(!music.ctx||!music.mute)return;
+  const t=music.ctx.currentTime;
+  music.mute.gain.cancelScheduledValues(t);
+  music.mute.gain.setTargetAtTime(s.soundOn?1:0,t,.025);
+}
+function startScore(){
+  stopScore();
+  const ctx=audioReady();if(!ctx)return;
+  try{if(ctx.state==='suspended')ctx.resume().catch(()=>{s.audioMessage='TAP MUSIC TO ENABLE SOUND';});}catch(e){}
+  const t0=ctx.currentTime+.045;
+  const end=t0+9.97;
+  const bus=ctx.createGain(),mute=ctx.createGain();
+  bus.gain.setValueAtTime(.0001,t0);
+  bus.gain.linearRampToValueAtTime(.85,t0+.13);
+  bus.gain.setValueAtTime(.85,t0+9.38);
+  bus.gain.linearRampToValueAtTime(0,t0+9.98);
+  mute.gain.value=s.soundOn?1:0;
+  bus.connect(mute);mute.connect(music.master);
+  music.bus=bus;music.mute=mute;music.ends=end;
+  // Seven fast bars of crooked carnival ska: jumpy bass, nasal brass, xylophone and drums.
+  const beat=60/174,roots=[40,43,45,47,40,36,47],melody=[76,79,82,81,79,76,74,78,79,83,86,81,79,75];
+  for(let b=0;b<7;b++){
+    const root=roots[b],base=t0+b*4*beat;
+    for(let j=0;j<4;j++){
+      let tt=base+j*beat;
+      if(tt>=end-.23)continue;
+      thump(tt);
+      if(j%2)snare(tt);
+      let bass=root+(j===1?7:j===3?10:0);
+      note(pitch(bass),tt+.019,beat*.72,'triangle',.105);
+      note(pitch(bass)*2,tt+.02,beat*.56,'sawtooth',.025);
+      // The brass and organ land *between* the beats, like cartoon ska.
+      let ch=root+24+([3,7,10,6][j]);
+      brass(tt+beat*.51,ch,.125,.027+(b>=5?.009:0));
+      brass(tt+beat*.51,ch+7,.11,.012);
+      if(j===3&&b%2===1)brass(tt+beat*.77,ch+3,.085,.023);
+    }
+    for(let j=0;j<8;j++){
+      let tt=base+j*beat*.5;if(tt>end-.12)continue;
+      hiss(tt,.048,b>=5?.049:.031,j%2?4000:6000);
+      if(j===1||j===5)note(920,tt,.06,'square',.017,880);
+    }
+    // A little crooked, original call-and-response upper melody.
+    let notes=b%2?[melody[2],melody[4],melody[5],melody[0]]:[melody[0],melody[1],melody[3],melody[2]];
+    for(let j=0;j<4;j++){
+      let tt=base+(j+.25)*beat;if(tt>end-.25)continue;
+      let n=notes[j]+(b===3?2:b===5?-2:0);
+      note(pitch(n),tt,.14,'sine',.063);
+      note(pitch(n)*2.09,tt,.09,'sine',.018);
+    }
+  }
+  // Exactly timed springy impacts as the patient ricochets off padded walls.
+  for(let sec=.53,i=0;sec<9.4;sec+=.998,i++)bloop(t0+sec,i%2===0);
+  // The last second goes fully off the rails: fast taps, ascending whistle and crash.
+  for(let i=0;i<8;i++){
+    let tt=t0+8.55+i*.155;
+    if(tt>end-.08)continue;
+    note(pitch(76+i),tt,.09,'square',.032);
+    hiss(tt,.045,.035,2800);
+  }
+  bloop(t0+9.3,true);
+  note(410,t0+9.53,.39,'sawtooth',.068,1160);
+  hiss(t0+9.66,.23,.16,950);
+  // Stop all audio nodes naturally as the 10-second scene transitions.
+}
+function beginIntro(withSound){
+  s.armed=true;s.soundOn=withSound;s.start=performance.now();s.audioMessage='';
+  startScore();
+}
+function toggleSound(){
+  s.soundOn=!s.soundOn;
+  if(s.view==='intro'&&s.armed){if(!music.ctx)startScore();else scoreVolume();}
+}
+function replayIntro(){
+  s.view='intro';s.popup='';s.tab=0;s.armed=true;s.start=performance.now();
+  startScore();
+}
+function site(){stopScore();s.view='site';s.flash=1.2}
+
+function intro(){controls=[];g.fillStyle=A.bg;g.fillRect(0,0,W,H);glow(W/2,320,W*.8,A.mint,.17);let x=phone?12:W*.14,wi=W-2*x,y=phone?124:126,he=phone?416:464,t=s.armed?cap((performance.now()-s.start)/1000,0,10):0;room(x,y,wi,he);let wave=Math.sin(t*3.15),dir=Math.cos(t*3.15),cx=W/2+wave*(wi*.5-(phone?65:128)),cy=y+he*.7-Math.abs(Math.sin(t*6))*15;g.globalAlpha=.1;degen(cx-dir*15,cy+5,phone?.66:.95,t,dir);g.globalAlpha=1;degen(cx,cy,phone?.66:.95,t,dir);if(Math.abs(wave)>.95){glow(cx,cy,75,A.pink,.18);for(let j=0;j<8;j++){let a=j*Math.PI/4+t;ln(cx+Math.cos(a)*50,cy+Math.sin(a)*55,cx+Math.cos(a)*80,cy+Math.sin(a)*80,j%2?A.pink:A.lime,2)}}
+let copy=t<2?['ADMITTED: SOL ADDICTION','PATIENT INSISTS HE IS IN CONTROL']:t<4?['JUST ONE MORE CANDLE.','HE SAID THAT 947 TRADES AGO']:t<7?['DOCTOR, DID IT BOND?!','SECURITY TO THE PADDED WARD']:t<9?['I NEED MY NEXT FIX!','RESTRAINTS UNDER EXTREME PRESSURE']:['REHAB HAS FAILED.','RELEASING PATIENT TO THE CHART'];let ty=y+he+49;tx('PATIENT 001  •  SOLADDICT',x,75,11,A.mint);tx('PSYCHIATRIC OBSERVATION',x,105,9,A.soft);btn('SKIP INTRO  →',W-x-122,61,122,40,site,true,10);tx(copy[0],W/2,ty,phone?19:27,A.white,900,'center',wi-8);tx(copy[1],W/2,ty+25,phone?10:14,A.mint,850,'center',wi-8);bar(x,ty+54,wi,8,t*10);tx('SESSION  '+Math.floor(t)+'/10',x,ty+81,11,A.soft);tx(Math.ceil(10-t)+'s UNTIL RELEASE',W-x,ty+81,11,A.white,800,'right');tx("YES MOM, I'M ADDICTED.",W/2,ty+194,phone?19:28,A.lime,900,'center');
+if(s.armed){
+ btn(s.soundOn?'♫ MUSIC ON  /  TAP TO MUTE':'♫ MUSIC MUTED  /  TAP TO PLAY',x,ty+101,phone?210:258,37,toggleSound,s.soundOn,phone?10:12);
+ tx('ORIGINAL CARTOON-NEW-WAVE SCORE • 10 SEC',x,ty+156,phone?9:11,A.soft,750);
+ if(s.audioMessage)tx(s.audioMessage,x,ty+192,10,A.pink,850);
+}
+if(!s.armed){
+  const ox=x+Math.max(10,wi*.045),ow=wi-Math.max(20,wi*.09),oy=y+(phone?85:100);
+  box(ox,oy,ow,phone?248:253,18,'rgba(7,28,27,.95)','#6befba');
+  glow(W/2,oy+80,115,A.mint,.17);
+  tx('THE WARD IS WAITING',W/2,oy+47,phone?18:26,A.white,900,'center');
+  tx('10 SECONDS OF PURE CARTOON CHAOS',W/2,oy+74,phone?10:13,A.mint,850,'center');
+  btn('▶ START INTRO WITH MUSIC',ox+14,oy+98,ow-28,50,()=>beginIntro(true),true,phone?12:15);
+  btn('WATCH SILENT',ox+14,oy+162,ow-28,44,()=>beginIntro(false),false,phone?11:13);
+  tx('SOUND REQUIRES A TAP ON iPHONE',W/2,oy+233,phone?10:12,A.soft,750,'center');
+}
+if(t>=10&&s.armed)site()}
+function background(){g.fillStyle=A.bg;g.fillRect(0,0,W,H);glow(W*.62,210,W*.8,A.mint,.09);for(let j=0;j<W;j+=45)ln(j,0,j,H,'#123026',.6);for(let j=0;j<H;j+=45)ln(0,j,W,j,'#15352a',.6)}
+function header(){let x=phone?18:34,y=39;glow(x+24,y,44,A.lime,.3);let grad=g.createLinearGradient(x,y-27,x+48,y+27);grad.addColorStop(0,A.lime);grad.addColorStop(.5,A.mint);grad.addColorStop(1,A.purple);circ(x+24,y,27,'#172c28',grad,4);g.save();g.beginPath();g.arc(x+24,y,21,0,Math.PI*2);g.clip();if(profile.naturalWidth)g.drawImage(profile,x+3,y-21,42,42);g.restore();circ(x+44,y+19,8,A.bg);circ(x+44,y+19,5,A.mint);tx('SOL',x+61,y-1,20,A.white,900);tx('ADDICT',x+104,y-1,20,A.lime,900);tx('THE FIX PROTOCOL',x+62,y+18,10,A.soft);btn('↺ INTRO',W-92,23,78,31,replayIntro,false,10);let labels=phone?['LIVE','FIXES','PROFILE','REHAB']:['THE FIX','FIX HISTORY','PROFILE','REHAB'],gap=5,bw=phone?(W-47)/4:133,start=phone?16:W-608;labels.forEach((v,i)=>btn(v,start+i*(bw+gap),79,bw,38,()=>{s.tab=i;s.popup=''},s.tab===i,10))}
+function fix(){if(s.breakStart||s.popup||s.view!=='site')return;s.meter=100;s.breakStart=performance.now();s.flash=1;feedAdd('ALERT','THE FIX','RESTRAINTS FAILING!',A.pink)}
+function buy(){if(s.breakStart||s.popup)return;s.clean=0;let gain=11+Math.random()*5;s.meter=cap(s.meter+gain,0,100);s.demoBuys++;s.flash=.65;feedAdd('BUY',demoWallets[s.demoBuys%demoWallets.length],`CRAVING +${gain.toFixed(1)}%`,A.mint);if(s.meter>=100)fix()}
+function burn(){s.burn+=6;feedAdd('BURN','COMMUNITY','REHAB GOAL +6%',A.gold);if(s.burn>=100){s.burn=0;s.popup='BONUS FIX UNLOCKED!';feedAdd('BONUS','RESERVE','BONUS FIX UNLOCKED',A.lime)}}
+function deliver(){s.breakStart=0;s.fix++;s.amount=Math.round((12+Math.random()*11)*100)/100;s.total+=s.amount;s.history.unshift(s.amount);s.history=s.history.slice(0,5);s.streak++;s.meter=0;s.flash=1.4;s.popup=`FIX #${s.fix} DELIVERED!`;feedAdd('REWARD','FIX #'+s.fix,nums(s.amount)+' SOL SENT',A.lime)}
+/* SOLADDICT desktop dashboard V8 — canvas only, no CSS/SVG. */
+const demoUsers=[
+  ['SOLDEGEN','BEYOND SAVING','98.6'],
+  ['ZIZZLE','TERMINAL','97.1'],
+  ['SENDIT','FULL BLOWN','91.4'],
+  ['MOMSAIDNO','HOOKED','86.9']
+];
+const demoWallets=['8vK3…pQL2','9rzA…X9qw','4Fk7…Qs19','3Cpa…R8dV','HodL…7777'];
+s.feed=[
+  {kind:'BUY',who:'8vK3…pQL2',desc:'CRAVING +2.8%',ago:16,col:A.mint},
+  {kind:'REWARD',who:'FIX #142',desc:'18.42 SOL • 1,381 PAID',ago:31,col:A.lime},
+  {kind:'SYSTEM',who:'PROTOCOL',desc:'NEXT FIX BUILDING',ago:46,col:A.purple},
+  {kind:'BURN',who:'9rzA…X9qw',desc:'BONUS GOAL ADVANCED',ago:85,col:A.gold},
+  {kind:'BUY',who:'4Fk7…Qs19',desc:'CLEAN TIME RESET',ago:104,col:A.pink}
+];
+s.feedTick=0;
+s.demoBuys=4289;
+function feedAdd(kind,who,desc,color){s.feed.unshift({kind,who,desc,ago:0,col:color});if(s.feed.length>10)s.feed.pop()}
+function feedTime(n){return n<1?'NOW':n<60?Math.floor(n)+'s':Math.floor(n/60)+'m'}
+function statusText(){return s.meter<25?'SOBER':s.meter<50?'ITCHING':s.meter<75?'CRAVING':s.meter<90?'NEED A FIX':'RELAPSE IMMINENT'}
+function desktopTitle(){
+  const x=desktopX(),sz=W<930?47:60,y=169;
+  tx('GET YOUR',x,y,sz,A.white,900);
+  tx('FIX.',x+(W<930?316:418),y,sz,A.lime,900);
+  tx('ADDICTED TO SOL REWARDS.  /  YES MOM, I\'M ADDICTED.',x,190,11,A.soft,850);
+  tx('● SIMULATION MODE',W-x,174,11,A.mint,850,'right');
+}
+function desktopX(){return W<950?24:Math.min(48,Math.max(28,W*.032))}
+function lab(t,x,y,color=A.soft,sz=11){tx(t,x,y,sz,color,850)}
+function desktopMeter(x,y,w,h){
+  card(x,y,w,h,A.lime);
+  // Subtle orbital lighting behind the mascot, clipped inside the panel.
+  g.save();g.beginPath();g.roundRect(x+6,y+7,w-12,h-14,12);g.clip();
+  const px=x+w-137,py=y+142,r=110;
+  glow(px,py,200,A.mint,.13);
+  for(let j=0;j<4;j++){
+    g.beginPath();g.arc(px,py,r-j*15,-1.55+T*.14+j*.22,2.4+T*.14+j*.22);
+    g.strokeStyle=j%2?'rgba(143,98,224,.16)':'rgba(113,253,168,.18)';g.lineWidth=1.6;g.stroke();
+  }
+  // This is the same straitjacket character used in the opening scene.
+  g.globalAlpha=.73;
+  degen(px+Math.sin(T*2.4)*11,py+43-Math.abs(Math.sin(T*4.8))*9,W<1040?1.05:1.37,T,Math.cos(T*2));
+  g.globalAlpha=1;
+  g.restore();
+  lab('01  /  THE CRAVING METER',x+24,y+31,A.mint,12);
+  if(W>=1060){const bx=x+Math.min(w*.43,350);box(bx,y+16,166,23,11,'#173329','#285445');tx('●  PATIENT #001',bx+83,y+31,10,A.mint,850,'center');}
+  g.save();g.shadowColor='#0a1b11';g.shadowBlur=17;
+  tx(s.meter.toFixed(1)+'%',x+24,y+127,W<950?73:94,s.meter>=90?A.pink:A.lime,900);g.restore();
+  bar(x+24,y+148,w-48,14,s.meter,s.meter>=90?A.pink:A.lime);
+  lab(statusText(),x+24,y+187,s.meter>=90?A.pink:A.mint,15);
+  tx((100-s.meter).toFixed(1)+'% TO NEXT FIX',x+Math.min(w*.66,475),y+187,12,A.white,900,'right');
+  tx(s.meter>=90?'THIS IS NOT A DRILL.':'Just one more buy.',x+24,y+210,13,A.soft,650);
+  g.beginPath();for(let i=0;i<=54;i++){let xx=x+24+(w-48)*i/54,yy=y+233+(Math.sin(T*3+i*.48)+Math.cos(T*2-i*.34))*3.3*s.meter/100;i?g.lineTo(xx,yy):g.moveTo(xx,yy)}
+  g.strokeStyle='#3c715f';g.lineWidth=1.3;g.stroke();
+  const bw=(w-57)/2;
+  btn('↗  SIMULATE BUY',x+24,y+h-50,bw,38,buy,true,12);
+  btn('✦  TRIGGER FIX',x+33+bw,y+h-50,bw,38,fix,false,12);
+}
+function desktopClean(x,y,w,h){
+  card(x,y,w,h,A.pink);lab('02  /  COMMUNITY CLEAN TIME',x+19,y+28,A.pink,11);
+  tx(clock(s.clean),x+19,y+87,W<1050?37:47,A.white,900);
+  lab(s.clean>=180?'THREE MINUTES CLEAN. IMPOSSIBLE.':'EVERY BUY RESETS THE CLOCK.',x+20,y+h-17,A.soft,10);
+  // pulsing heartbeat / clock glyph
+  circ(x+w-32,y+47,6,'#3a2234',A.pink,1);circ(x+w-32,y+47,2.4,Math.sin(T*6)>0?A.pink:'#492535');
+}
+function desktopLast(x,y,w,h){
+  card(x,y,w,h,A.purple);lab('03  /  LAST FIX DELIVERED',x+19,y+28,A.purple,11);
+  tx('#'+s.fix,x+19,y+86,W<1050?35:42,A.white,900);
+  tx(s.amount.toFixed(2)+' SOL',x+w-19,y+84,W<1050?23:31,A.mint,900,'right');
+  lab('1,381 ADDICTS PAID  •  VERIFIED IN DEMO',x+20,y+h-17,A.soft,10);
+}
+function desktopKpi(x,y,w,h,accent,name,val,detail,icon){
+  card(x,y,w,h,accent);
+  lab(name,x+17,y+28,accent,11);
+  tx(val,x+17,y+75,W<980?26:33,A.white,900,'left',w-35);
+  lab(detail,x+17,y+h-16,A.soft,W<980?9:10);
+  // Accent terminal mark
+  box(x+w-34,y+16,15,3,2,accent);box(x+w-29,y+22,10,3,2,accent);
+}
+function desktopActivity(x,y,w,h){
+  card(x,y,w,h,A.mint);
+  lab('◉  LIVE ACTIVITY / CRAVING FEED',x+18,y+30,A.mint,12);
+  tx('DEMO STREAM',x+w-17,y+30,10,A.soft,850,'right');
+  ln(x+16,y+43,x+w-16,y+43,'#315349');
+  const shown=Math.min(5,Math.max(4,Math.floor((h-64)/38)));
+  s.feed.slice(0,shown).forEach((e,i)=>{
+    const yy=y+51+i*38;
+    if(i%2===0)box(x+12,yy,w-24,35,7,'#142c27');
+    circ(x+24,yy+17,3.1,e.col);
+    tx(e.kind,x+35,yy+14,10,e.col,900);
+    tx(e.who,x+35,yy+29,10,A.soft,700);
+    tx(e.desc,x+w-51,yy+21,W<950?10:11,A.white,800,'right',Math.max(70,w*.46));
+    tx(feedTime(e.ago),x+w-15,yy+21,10,A.soft,700,'right');
+  });
+  lab('ALL ACTIVITY SHOWN IS SIMULATED',x+17,y+h-15,A.soft,10);
+}
+function desktopBurn(x,y,w,h){
+  card(x,y,w,h,A.gold);
+  lab('04  /  REHAB FAILURE METER',x+17,y+30,A.gold,11);
+  tx(s.burn+'%',x+17,y+98,58,A.gold,900);
+  box(x+w-103,y+62,82,28,13,'#3e3024','#705334');
+  tx('BONUS FIX',x+w-62,y+80,10,A.gold,900,'center');
+  bar(x+17,y+112,w-34,12,s.burn,A.gold);
+  lab('VOLUNTARY TOKEN BURNS ADVANCE THE GOAL.',x+17,y+144,A.soft,W<950?9:10);
+  tx('100%  →  BONUS FIX FROM PRESET RESERVE',x+17,y+168,10,A.white,850,'left',w-34);
+  btn('🔥  SIMULATE TOKEN BURN',x+17,y+h-55,w-34,39,burn,false,11);
+}
+function desktopLeaderboard(x,y,w,h){
+  card(x,y,w,h,A.purple);lab('HALL OF SHAME',x+17,y+30,A.purple,12);
+  demoUsers.forEach((a,i)=>{
+    const yy=y+44+i*40;
+    if(i%2===0)box(x+12,yy,w-24,36,7,'#182a2b');
+    tx('0'+(i+1),x+20,yy+23,13,A.lime,900);
+    tx(a[0],x+48,yy+22,12,A.white,900,'left',w-120);
+    tx(a[1],x+w-15,yy+23,W<1100?9:10,i<2?A.pink:A.mint,850,'right',w*.48);
+  });
+  btn('VIEW ADDICT PROFILES  →',x+14,y+h-52,w-28,36,()=>{s.tab=2;s.popup=''},false,11);
+}
+function desktopFooter(y){
+  const x=desktopX();ln(x,y,W-x,y,'#25493b');
+  lab('POWERED BY FORGE   ◈   SOLADDICT — THE FIX',x,y+24,A.mint,10);
+  tx('INTERACTIVE CONCEPT  •  NO REAL TRANSACTIONS OR REWARDS',W-x,y+24,10,A.soft,800,'right');
+}
+function desktopDashboard(){
+  const x=desktopX(),full=W-x*2,gap=14,top=205,heroH=296;
+  desktopTitle();
+  const left=Math.round((full-gap)*(W<1060?.62:.655)), right=full-gap-left;
+  desktopMeter(x,top,left,heroH);
+  desktopClean(x+left+gap,top,right,141);
+  desktopLast(x+left+gap,top+155,right,141);
+  const kY=top+heroH+15,kH=117,kW=(full-gap*3)/4;
+  desktopKpi(x,kY,kW,kH,A.mint,'PENDING SOL',nums(s.meter*.1842)+' SOL','REWARDS ACCUMULATING');
+  desktopKpi(x+kW+gap,kY,kW,kH,A.purple,'TOTAL SOL DISTRIBUTED',nums(s.total)+' SOL','SIMULATED LIFETIME PAYOUT');
+  desktopKpi(x+(kW+gap)*2,kY,kW,kH,A.gold,'BINGE STREAK',s.streak+'×','SUCCESSIVE REWARD CYCLES');
+  desktopKpi(x+(kW+gap)*3,kY,kW,kH,A.pink,'FIXES DELIVERED','#'+s.fix,'1,381 ADDICTS PER LAST FIX');
+  const rowY=kY+kH+15;
+  if(W>=1060){
+    const h=270+Math.max(0,H-975),feedW=Math.round((full-2*gap)*.445),burnW=Math.round((full-2*gap)*.286),boardW=full-2*gap-feedW-burnW;
+    desktopActivity(x,rowY,feedW,h);
+    desktopBurn(x+feedW+gap,rowY,burnW,h);
+    desktopLeaderboard(x+feedW+gap+burnW+gap,rowY,boardW,h);
+    desktopFooter(rowY+h+16);
+  }else{
+    desktopActivity(x,rowY,full,245);
+    const lowY=rowY+259,h=245,smallW=(full-gap)/2;
+    desktopBurn(x,lowY,smallW,h);
+    desktopLeaderboard(x+smallW+gap,lowY,smallW,h);
+    desktopFooter(lowY+h+16);
+  }
+}
+function desktopOutro(y,title,sub,col=A.lime,h=110){
+  const x=desktopX(),full=W-2*x;
+  card(x,y,full,h,col);
+  lab('SOLADDICT  /  PATIENT NOTES',x+20,y+28,col,11);
+  tx(title,x+20,y+(h<130?64:86),W<920?20:27,A.white,900,'left',full-40);
+  tx(sub,x+20,y+(h<130?89:119),W<920?10:12,A.soft,800,'left',full-40);
+  let width=Math.min(190,Math.max(100,full*.17));
+  for(let i=0;i<11;i++){
+    const xx=x+full-20-width+i*(width/11),hh=(6+Math.abs(Math.sin(T*2.6+i*.6))*24)*(s.meter/120+.22);
+    box(xx,y+h-22-hh,Math.max(3,width/16),hh,3,i%3===0?A.purple:col)
+  }
+}
+function desktopPageHeading(title,desc){const x=desktopX();tx(title,x,169,W<900?43:58,A.lime,900);lab(desc,x,192,A.soft,11)}
+function desktopPages(){
+  const x=desktopX(),full=W-2*x,gap=14,top=207;
+  if(s.tab===1){
+    desktopPageHeading('FIX HISTORY','EVERY SOL DROP. EVERY RELAPSE.  /  SIMULATED RECORDS.');
+    let left=Math.round((full-gap)*.625),right=full-gap-left;
+    card(x,top,left,580,A.lime);lab('PAST DISTRIBUTIONS / LATEST FIRST',x+19,top+33,A.mint,12);
+    s.history.slice(0,5).forEach((a,i)=>{const yy=top+54+i*83;
+      box(x+17,yy,left-34,71,10,i%2?'#152b27':'#1b342c');
+      tx('FIX #'+(s.fix-i),x+30,yy+30,21,A.white,900);
+      tx(nums(a)+' SOL',x+left-31,yy+29,21,A.mint,900,'right');
+      lab('1,381 ADDICTS PAID   •   COMPLETED DISTRIBUTION',x+30,yy+53,A.soft,10)
+    });
+    btn('✦ TRIGGER ANOTHER FIX',x+18,top+513,left-36,46,fix,true,12);
+    let xx=x+left+gap;
+    const y1=top,y2=top+190,y3=top+382;
+    card(xx,y1,right,176,A.mint);lab('LIFETIME REWARDS',xx+20,y1+35,A.mint);tx(nums(s.total)+' SOL',xx+20,y1+97,W<900?27:35,A.white,900);lab('SIMULATED TOTAL SENT TO HOLDERS',xx+20,y1+146);
+    card(xx,y2,right,178,A.purple);lab('AVERAGE FIX',xx+20,y2+36,A.purple);tx(nums(s.history.reduce((a,b)=>a+b,0)/s.history.length)+' SOL',xx+20,y2+100,W<900?26:35,A.white,900);lab('AVERAGE OF RECENT FIXES',xx+20,y2+145);
+    card(xx,y3,right,198,A.gold);lab('NEXT FIX BUILDING',xx+20,y3+36,A.gold);tx(s.meter.toFixed(1)+'%',xx+20,y3+96,39,A.lime,900);bar(xx+20,y3+113,right-40,12,s.meter);lab('KEEP THE METER MOVING',xx+20,y3+155);
+    desktopOutro(top+594,'THE NEXT FIX IS ALWAYS BUILDING.','TRADE → FEED THE METER → WATCH THE BREAKOUT → DISTRIBUTE SOL',A.lime,111);
+    desktopFooter(top+723);
+  }else if(s.tab===2){
+    desktopPageHeading('THE ADDICTS','PUBLIC PROFILES. USELESS BRAGGING RIGHTS. ABSOLUTELY NO FINANCIAL RANK MULTIPLIERS.');
+    let left=Math.round((full-gap)*.52), right=full-gap-left;
+    card(x,top,left,570,A.lime);lab('PATIENT FILE  /  PUBLIC WALLET PROFILE',x+22,top+34,A.mint,12);tx('ZIZZLE',x+22,top+114,61,A.white,900);
+    box(x+22,top+140,175,31,14,'#3a2037','#7d3b69');tx('⚡ TERMINAL ADDICT',x+109,top+160,11,A.pink,900,'center');
+    [['HOLDER SINCE','41 DAYS'],['FIXES SURVIVED',String(s.fix-24)],['LONGEST HOLD','31 DAYS'],['REWARDS RECEIVED','7.82 SOL'],['ADDICTION SCORE','98 / 100']].forEach((r,i)=>{
+      let yy=top+214+i*61;lab(r[0],x+25,yy,A.soft,12);tx(r[1],x+left-25,yy+1,19,A.white,900,'right');ln(x+25,yy+18,x+left-25,yy+18,'#2b4c40')
+    });
+    desktopLeaderboard(x+left+gap,top,right,290);
+    card(x+left+gap,top+304,right,266,A.purple);lab('ADDICTION RANKS',x+left+gap+19,top+336,A.purple);
+    ['CASUAL   →   ITCHING','HOOKED   →   FULL BLOWN','TERMINAL   →   BEYOND SAVING'].forEach((q,i)=>{box(x+left+gap+15,top+353+i*56,right-30,46,8,'#1c2c2e');tx(q,x+left+gap+27,top+381+i*56,12,i===2?A.pink:A.white,850)});
+    desktopOutro(top+585,'THE HALL OF SHAME IS NEVER FULL.','UNLOCK RIDICULOUS TITLES. EARN ABSOLUTELY ZERO FINANCIAL MULTIPLIERS.',A.purple,110);
+    desktopFooter(top+714);
+  }else if(s.tab===3){
+    desktopPageHeading('REHAB HAS FAILED','WELCOME TO SOLADDICT REHAB.  UNFORTUNATELY, TREATMENT DOES NOT APPEAR TO BE WORKING.');
+    let left=Math.round((full-gap)*.61),right=full-gap-left;
+    card(x,top,left,364,A.pink);lab('SOLADDICT WELLNESS CENTER / PATIENT #001',x+25,top+39,A.pink,12);
+    tx('RECOVERY',x+25,top+134,W<1100?58:80,A.white,900);
+    tx('IS CANCELLED.',x+25,top+214,W<1100?42:60,A.lime,900);
+    tx('Unfortunately, treatment has failed.',x+27,top+257,18,A.soft,700);
+    btn("YES, I'M DONE",x+26,top+287,left-52,50,()=>{s.popup='NICE TRY.'},false,14);
+    desktopBurn(x+left+gap,top,right,364);
+    let low=top+378;
+    desktopKpi(x,low,(full-gap*3)/4,130,A.mint,'TOTAL SOL DISTRIBUTED',nums(s.total)+' SOL','SIMULATED REWARDS');
+    desktopKpi(x+(full-gap*3)/4+gap,low,(full-gap*3)/4,130,A.gold,'REWARD CYCLES','#'+s.fix,'FIXES ON RECORD');
+    desktopKpi(x+((full-gap*3)/4+gap)*2,low,(full-gap*3)/4,130,A.pink,'COMMUNITY CLEAN TIME',clock(s.clean),'SINCE LAST SIMULATED BUY');
+    desktopKpi(x+((full-gap*3)/4+gap)*3,low,(full-gap*3)/4,130,A.purple,'CRAVING LEVEL',s.meter.toFixed(1)+'%','NEXT FIX BUILDING');
+    desktopOutro(low+143,'TREATMENT PLAN: JUST ONE MORE FIX.','THE CLEAN TIMER KEEPS RUNNING. THE CRAVING METER REFUSES TO COOPERATE.',A.pink,162);
+    desktopFooter(low+325);
+  }
+}
+
+function dashboard(){if(!phone){desktopDashboard();return;} let x=phone?15:35,w=W-2*x;tx('GET YOUR',x,158,phone?(W<370?32:37):58);tx('FIX.',phone?W-125:x+433,158,phone?(W<370?32:37):58,A.lime,900);tx("ADDICTED TO SOL REWARDS. / YES MOM, I'M ADDICTED.",x,180,10,A.soft,800,'left',w);
+let y=204;card(x,y,w,298);tx('01  /  THE CRAVING METER',x+17,y+30,12,A.mint);
+g.save();g.beginPath();g.roundRect(x+7,y+38,w-14,107,10);g.clip();let cx=x+w*.68+Math.sin(T*2.6)*w*.1,cy=y+131-Math.abs(Math.sin(T*5))*5;glow(cx,cy-52,110,A.mint,.13);g.globalAlpha=.32;degen(cx,cy,phone?.64:.80,T,Math.cos(T*3));g.restore();g.save();g.shadowColor='#06100f';g.shadowBlur=17;tx(s.meter.toFixed(1)+'%',x+17,y+121,phone?75:92,s.meter>89?A.pink:A.lime,900);g.restore();bar(x+17,y+146,w-34,14,s.meter,s.meter>89?A.pink:A.lime);let phase=s.meter<25?'SOBER':s.meter<50?'ITCHING':s.meter<75?'CRAVING':s.meter<90?'NEED A FIX':'RELAPSE IMMINENT';tx(phase,x+17,y+182,14,s.meter>89?A.pink:A.mint);tx((100-s.meter).toFixed(1)+'% TO NEXT FIX',x+w-17,y+182,12,A.white,900,'right');tx('Just one more buy.',x+17,y+207,13,A.soft);g.beginPath();for(let j=0;j<45;j++){let px=x+17+j*(w-34)/44,py=y+225+Math.sin(T*3+j*.5)*3*(s.meter/100);j?g.lineTo(px,py):g.moveTo(px,py)}g.strokeStyle='#437960';g.stroke();let bw=(w-45)/2;btn('↗ SIMULATE BUY',x+17,y+243,bw,42,buy,true,11);btn('✦ TRIGGER FIX',x+28+bw,y+243,bw,42,fix,false,11);
+if(!phone)return;
+let yy=y+313;card(x,yy,w,139,A.pink);tx('02  /  COMMUNITY CLEAN TIME',x+18,yy+29,11,A.pink);tx(clock(s.clean),x+18,yy+93,50,A.white,900);tx('EVERY BUY RESETS THE CLOCK TO ZERO.',x+18,yy+121,10,A.soft);yy+=151;card(x,yy,w,132,A.purple);tx('03  /  LAST FIX DELIVERED',x+18,yy+28,11,A.purple);tx('#'+s.fix,x+18,yy+78,37);tx(s.amount.toFixed(2)+' SOL',x+w-18,yy+78,26,A.mint,900,'right');tx('1,381 ADDICTS PAID',x+18,yy+115,13,A.soft);yy+=147;let half=(w-13)/2;card(x,yy,half,125,A.gold);card(x+half+13,yy,half,125,A.mint);tx('BINGE STREAK',x+16,yy+28,11,A.gold);tx(s.streak+'×',x+16,yy+75,28);tx('CONSECUTIVE FIXES',x+16,yy+109,9,A.soft);tx('PENDING SOL',x+half+29,yy+28,11,A.mint);tx(nums(s.meter*.1842),x+half+29,yy+75,25);tx('SIMULATED ACCRUAL',x+half+29,yy+109,9,A.soft);yy+=139;card(x,yy,w,170,A.gold);tx('04  /  REHAB FAILURE METER',x+17,yy+29,11,A.gold);tx(s.burn+'%',x+w-17,yy+31,23,A.gold,900,'right');bar(x+17,yy+55,w-34,13,s.burn,A.gold);tx('BURN TO FEED THE COMMUNITY BONUS FIX.',x+17,yy+94,11,A.soft,750,'left',w-34);btn('SIMULATE VOLUNTARY BURN',x+17,yy+115,w-34,41,burn,false,11);tx('THE FIX NEVER ENDS.',x,yy+205,17);tx('TRADE → FEED THE METER → SOL DROP → REPEAT',x,yy+228,10,A.soft)}
+function pages(){if(!phone){desktopPages();return;} let x=phone?15:35,w=W-x*2;let title=['','FIX HISTORY','THE ADDICTS','REHAB FAILED'][s.tab];tx(title,x,157,phone?34:55,A.lime,900);tx('SOLADDICT • THE FIX PROTOCOL',x,182,11,A.soft);
+if(s.tab===1){card(x,205,w,575);tx('FIX DISTRIBUTIONS / LATEST FIRST',x+17,235,11,A.mint);s.history.forEach((a,j)=>{let y=261+j*76;box(x+14,y,w-28,64,9,'#1c342e');tx('FIX #'+(s.fix-j),x+26,y+28,17);tx(nums(a)+' SOL',x+w-26,y+28,19,A.mint,900,'right');tx('1,381 ADDICTS PAID',x+26,y+48,11,A.soft)});btn('✦ TRIGGER FIX',x+16,681,w-32,43,fix,true)}
+if(s.tab===2){card(x,205,w,306,A.purple);tx('PUBLIC WALLET PROFILE',x+17,236,11,A.purple);tx('ZIZZLE',x+17,286,36);tx('TERMINAL ADDICT',x+w-17,285,13,A.pink,900,'right');[['HOLDER SINCE','41 DAYS'],['FIXES SURVIVED',String(s.fix-24)],['REWARDS RECEIVED','7.82 SOL'],['ADDICTION SCORE','98 / 100']].forEach((r,j)=>{let yy=335+j*44;tx(r[0],x+17,yy,11,A.soft);tx(r[1],x+w-17,yy,17,A.white,900,'right')});card(x,526,w,330,A.mint);tx('HALL OF SHAME  /  TOP ADDICTS',x+17,555,11,A.mint);[['SOLDEGEN','BEYOND SAVING'],['ZIZZLE','TERMINAL'],['SENDIT','FULL BLOWN'],['MOMSAIDNO','HOOKED']].forEach((r,j)=>{let yy=580+j*64;box(x+14,yy,w-28,53,8,'#1d362f');tx('0'+(j+1)+'  '+r[0],x+24,yy+32,15);tx(r[1],x+w-23,yy+32,11,j<2?A.pink:A.mint,900,'right')})}
+if(s.tab===3){card(x,205,w,391,A.pink);tx('SOLADDICT WELLNESS CENTER',x+17,237,11,A.pink);tx('RECOVERY',x+17,317,phone?42:64);tx('IS CANCELLED.',x+17,366,phone?(W<370?31:35):55,A.lime);tx('Unfortunately, treatment has failed.',x+17,400,14,A.soft);tx('READY TO QUIT?',x+17,475,24);btn("YES, I'M DONE",x+17,490,w-34,53,()=>s.popup='NICE TRY.',false,14);tx('PARODY ONLY / NO WALLET ACTIONS.',x+17,566,10,A.soft);card(x,609,w,233,A.mint);tx('YOUR RECOVERY REPORT',x+17,640,11,A.mint);[['CRAVING LEVEL',s.meter.toFixed(1)+'%'],['TOTAL FIXES',String(s.fix)],['SOL DISTRIBUTED',nums(s.total)],['CLEAN TIME',clock(s.clean)]].forEach((r,j)=>{let yy=685+j*44;tx(r[0],x+17,yy,11,A.soft);tx(r[1],x+w-17,yy,15,A.white,900,'right')})}}
+function breakout(t){controls=[];g.fillStyle=A.bg;g.fillRect(0,0,W,H);glow(W/2,340,W*.8,A.lime,.18);let x=phone?12:W*.18,w=W-2*x,y=phone?201:163,h=phone?372:465;room(x,y,w,h);let freedom=cap((t-.55)/.65,0,1),cx=W/2,cy=y+h*.75-Math.sin(t*8)*5;if(t>.6){for(let i=0;i<4;i++){g.globalAlpha=1-cap(t/2.8,0,1);g.beginPath();g.arc(cx,cy-70,50+(t-.6)*(70+i*40),0,Math.PI*2);g.strokeStyle=i%2?A.purple:A.lime;g.lineWidth=4;g.stroke();g.globalAlpha=1}}degen(cx,cy,(phone?.88:1.17)*(1+freedom*.12),T,0,freedom);if(t>.55)for(let i=0;i<18;i++){let th=i*2.4,r=(t-.55)*(40+i*3),dx=cx+Math.cos(th)*r,dy=cy-67+Math.sin(th)*r;g.save();g.translate(dx,dy);g.rotate(th+t*5);box(-6,-6,13,18,2,i%3?A.white:A.purple,'#96a8a2');g.restore()}tx('CRAVING METER',W/2,82,13,A.mint,900,'center');tx('100%',W/2,155,phone?69:97,A.lime,900,'center');tx(t<.7?'RESTRAINTS: FAILING':t<1.5?'STRAITJACKET DESTROYED':'THE FIX HAS BROKEN LOOSE!',W/2,y+h+55,phone?19:29,t<.7?A.pink:A.lime,900,'center',W-20);tx('SOL REWARDS INCOMING  •  FIX #'+(s.fix+1),W/2,y+h+82,11,A.white,800,'center');bar(x,y+h+109,w,8,t/2.8*100);btn('SKIP ANIMATION →',W/2-105,y+h+142,210,42,deliver,false,11);if(t>=2.8)deliver()}
+function popup(){controls=[];box(0,0,W,H,0,'rgba(1,8,7,.91)');let w=phone?W-34:Math.min(W-60,560),x=(W-w)/2,y=phone?314:240;card(x,y,w,258,A.lime);tx(s.popup,W/2,y+80,phone?26:37,A.lime,900,'center',w-18);tx(s.popup==='NICE TRY.'?'REHAB DENIED YOUR REQUEST.':nums(s.amount)+' SOL DISTRIBUTED TO 1,381 WALLETS',W/2,y+128,phone?12:15,A.white,800,'center',w-14);tx('BUILDING THE NEXT FIX...',W/2,y+170,13,A.soft,800,'center');btn('BACK TO THE ADDICTION',x+20,y+196,w-40,44,()=>s.popup='',true,11)}
+function frame(ms){T=ms/1000;let dt=cap((ms-last)/1000,0,.06);last=ms;controls=[];if(s.view==='intro')intro();else{const prevClean=s.clean;s.clean+=dt;if(prevClean<180&&s.clean>=180)feedAdd('CLEAN','COMMUNITY','3 MINUTES CLEAN!',A.purple);s.feed.forEach(e=>e.ago+=dt);if(!s.breakStart&&!s.popup){s.feedTick+=dt;if(s.feedTick>6.5){s.feedTick=0;feedAdd('SYSTEM','CRAVING METER','REWARDS ACCUMULATING',A.purple)}}if(!s.breakStart&&!s.popup&&s.tab===0){s.meter+=dt*.7;if(s.meter>=100)fix()}background();header();if(s.tab===0)dashboard();else pages();if(s.flash>0){g.globalAlpha=s.flash*.08;g.fillStyle=A.lime;g.fillRect(0,0,W,H);g.globalAlpha=1}if(s.breakStart)breakout((performance.now()-s.breakStart)/1000);else if(s.popup)popup()}s.flash=Math.max(0,s.flash-dt);requestAnimationFrame(frame)}requestAnimationFrame(frame);
+c.addEventListener('pointerup',e=>{let r=c.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;let b=controls.slice().reverse().find(q=>x>=q.x&&x<=q.x+q.w&&y>=q.y&&y<=q.y+q.h);if(b)b.act()});
+})();
+</script></body></html>
